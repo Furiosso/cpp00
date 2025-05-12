@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 
 int main(int argc, char *argv[])
 {
@@ -6,16 +7,10 @@ int main(int argc, char *argv[])
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	else
 	{
-		int i { 1 };
-		while (i < argc)
+		for (int i = 1; i < argc; i++)
 		{
-			int j { 0 };
-			while (argv[i][j])
-			{
-				std::cout << (char)std::toupper(argv[i][j]);
-				j++;
-			}
-			i++;
+			for (int j = 0; argv[i][j]; j++)
+				std::cout << static_cast<char>(std::toupper(argv[i][j]));
 		}
 	}
 	std::cout << std::endl;

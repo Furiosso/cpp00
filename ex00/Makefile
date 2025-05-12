@@ -3,7 +3,7 @@ CC = c++
 
 CFILES = megaphone.cpp
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OFILES = $(CFILES:.cpp=.o)
 
@@ -11,11 +11,10 @@ NAME = megaphone
 
 all: $(NAME)
 
-$(NAME): $(OFILES)
+NAME: $(OFILES)
 	$(CC) $(CFLAGS) $(OFILES) -o $(NAME)
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: 
 
 clean:
 	rm -f $(OFILES)
