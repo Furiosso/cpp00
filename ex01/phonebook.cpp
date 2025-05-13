@@ -31,6 +31,48 @@ bool	check_alpha(std::string str)
 	return true;
 }
 
+std::string	trim(std::string str)
+{
+	int	i;
+
+	while (isspace(str[0]))
+	{
+		i = 0;
+		while (str[i + 1])
+		{
+			str[i] = str[i + 1];
+			i++;
+		}
+	}
+	while (str[i] && !isspace(str[i]))
+		i++;
+	while (isspace(str[i]))
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return str;
+}
+
+std::string	format(std::string str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		if (i == 0 && isspace(str[i]))
+		{
+			i++;
+			while (str[i] && isspace(str[i]))
+				i++;
+		}
+			
+			i++;
+	}
+}
+
 int main(void)
 {
 	PhoneBook	phonebook;

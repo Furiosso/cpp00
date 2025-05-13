@@ -41,7 +41,9 @@ void	PhoneBook::addContact(void)
 			newContact.setFirstName(input);
 			break ;
 		}
-		std::cout << std::endl << "Invalid input. Please stick to the format." << std::endl
+		std::cout << std::endl
+		<< "Invalid input. Please stick to the format." << std::endl
+		<< std::endl
 		<< "Only alphabetic characters allowed," << std::endl 
 		<< "spaces are forbidden in the beggining and the end of the name" << std::endl
 		<< "and there cannot be two spaces in a row." << std::endl;

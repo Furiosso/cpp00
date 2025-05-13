@@ -45,7 +45,9 @@ class	PhoneBook
 		void	_displace_contacts(void);
 };
 
-bool	check_spaces(std::string str);
-bool	check_alpha(std::string str);
+std::string	trim(std::string str);
+std::string	format(std::string str);
+bool		check_spaces(std::string str);
+bool		check_alpha(std::string str);
 
 #endif
