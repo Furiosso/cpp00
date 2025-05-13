@@ -46,7 +46,7 @@ class	PhoneBook
 };
 
 std::string	trim(std::string str);
-std::string	format(std::string str);
+//std::string	format(std::string str);
 bool		check_spaces(std::string str);
 bool		check_alpha(std::string str);
 

@@ -7,7 +7,7 @@ bool	check_spaces(std::string str)
 	i = 0;
 	while (str[i])
 	{
-		if (!isspace(str[i]))
+		if (!std::isspace(str[i]))
 			return true;
 		i++;
 	}
@@ -21,10 +21,7 @@ bool	check_alpha(std::string str)
 	i = 0;
 	while (str[i])
 	{
-		if ((i == 0 && isspace(str[i]))
-			|| (!isalpha(str[i]) && !isspace(str[i]))
-			|| (isspace(str[i]) && str[i + 1] && isspace(str[i + 1]))
-			|| (i == (str.length() - 1) && isspace(str[i]))) 
+		if (!std::isalpha(str[i]) && !std::isspace(str[i])) 
 			return false;
 		i++;
 	}
@@ -33,44 +30,28 @@ bool	check_alpha(std::string str)
 
 std::string	trim(std::string str)
 {
-	int	i;
-
-	while (isspace(str[0]))
-	{
-		i = 0;
-		while (str[i + 1])
-		{
-			str[i] = str[i + 1];
-			i++;
-		}
-	}
-	while (str[i] && !isspace(str[i]))
-		i++;
-	while (isspace(str[i]))
-	{
-		str[i] = '\0';
-		i++;
-	}
-	return str;
-}
-
-std::string	format(std::string str)
-{
+	
 	int	i;
 	int	j;
 
+	while (std::isspace(str[0]))
+	{
+		for (i = 0; str[i]; i++)
+			str[i] = str[i + 1];
+	}
 	i = 0;
 	while (str[i])
 	{
-		if (i == 0 && isspace(str[i]))
+		while (std::isspace(str[i]) && std::isspace(str[i + 1]))
 		{
-			i++;
-			while (str[i] && isspace(str[i]))
-				i++;
+			for (j = i; str[j]; j++)
+				str[j] = str[j + 1]; 
 		}
-			
-			i++;
+		i++;
 	}
+	while (std::isspace(str[--i]))
+		str[i] = '\0';
+	return str;
 }
 
 int main(void)

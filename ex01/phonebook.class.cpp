@@ -19,11 +19,6 @@ void	PhoneBook::_displace_contacts(void)
 		_contacts[i].setPhoneNumber(_contacts[i + 1].getPhoneNumber());
 		_contacts[i].setDarkestSecret(_contacts[i + 1].getDarkestSecret());
 	}
-	_contacts[7].setFirstName("");
-	_contacts[7].setLastName("");
-	_contacts[7].setNickName("");
-	_contacts[7].setPhoneNumber("");
-	_contacts[7].setDarkestSecret("");
 }
 
 void	PhoneBook::addContact(void)
@@ -38,6 +33,7 @@ void	PhoneBook::addContact(void)
 		std::getline(std::cin, input);
 		if (!input.empty() && check_spaces(input) && check_alpha(input))
 		{
+			input = trim(input);
 			newContact.setFirstName(input);
 			break ;
 		}
@@ -45,14 +41,14 @@ void	PhoneBook::addContact(void)
 		<< "Invalid input. Please stick to the format." << std::endl
 		<< std::endl
 		<< "Only alphabetic characters allowed," << std::endl 
-		<< "spaces are forbidden in the beggining and the end of the name" << std::endl
-		<< "and there cannot be two spaces in a row." << std::endl;
+		<< std::endl;
 	}
 
 	i = 0;
-	while (!_contacts[i].getFirstName().empty() && i < 8)
+	while (i < 8 && !_contacts[i].getFirstName().empty())
 		i++;
 	
+	std::cout << i << std::endl;
 	if (i == 8)
 	{
 		_displace_contacts();
