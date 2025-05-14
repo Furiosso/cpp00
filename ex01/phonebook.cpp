@@ -28,6 +28,22 @@ bool	check_alpha(std::string str)
 	return true;
 }
 
+bool	check_numbers(std::string str)
+{
+	int	i;
+
+	if ((str[0] != '+' || (str[0] == '+' && !str[1]))  && !std::isdigit(str[0]))
+		return false;
+	i = 1;
+	while (str[i])
+	{
+		if (!std::isdigit(str[i]) && !std::isspace(str[i])) 
+			return false;
+		i++;
+	}
+	return true;
+}
+
 std::string	trim(std::string str)
 {
 	
@@ -66,8 +82,8 @@ int main(void)
 		std::getline(std::cin, input);
 		if (input == "ADD")
 			phonebook.addContact();
-		//else if (input == "SEARCH")
-		//	phonebook.searchContacts();
+		else if (input == "SEARCH")
+			phonebook.searchContacts();
 		else if (input == "EXIT")
 		{
 			std::cout << "Exiting PhoneBook. Goodbye!" << std::endl;

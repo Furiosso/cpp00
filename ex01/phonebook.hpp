@@ -5,6 +5,7 @@
 # include <iostream>
 # include <string>
 # include <cctype>
+# include <cstring>
 
 class	Contact
 {
@@ -39,14 +40,15 @@ class	PhoneBook
 		PhoneBook(void);
 		~PhoneBook(void);
 		void	addContact(void);
-	//	void	searchContacts(void) const;
+		void	searchContacts(void) const;
 	private:
-		Contact	_contacts[8];
-		void	_displace_contacts(void);
+		Contact		_contacts[8];
+		std::string	_fillInfo(std::string const str, int type);
+		void		_displace_contacts(void);
 };
 
 std::string	trim(std::string str);
-//std::string	format(std::string str);
+bool		check_numbers(std::string str);
 bool		check_spaces(std::string str);
 bool		check_alpha(std::string str);
 
