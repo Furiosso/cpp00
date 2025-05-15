@@ -89,8 +89,12 @@ void	PhoneBook::_promptAndDisplay(void) const
 	{
 		std::cout << "Introduce index of the contact to display information: ";
 		std::getline(std::cin, input);
-		if (!input.empty() && check_digits(input))
-			index = std::stoi(input);
+		if (!input.empty() && check_spaces(input))
+		{
+			input = trim(input);
+			if (check_digits(input))
+				index = std::stoi(input);
+		}
 		if (index > 0 && index < 9 && !_contacts[index - 1].getFirstName().empty())
 			break ;
 		std::cout << std::endl << "Invalid index." << std::endl;
@@ -117,13 +121,12 @@ void	PhoneBook::searchContacts(void) const
 		std::cout << "The PhoneBook is empty" << std::endl;
 		return ;
 	}
-	std::cout << "|";
-    std::cout << std::setw(10) << std::right << "Index" << "|";
-    std::cout << std::setw(10) << std::right << "First Name" << "|";
-    std::cout << std::setw(10) << std::right << "Last Name" << "|";
-    std::cout << std::setw(10) << std::right << "Nickname" << "|";
-    std::cout << std::endl;
-    std::cout << "|----------|----------|----------|----------|" << std::endl;
+	std::cout << "|" << std::setw(10) << std::right << "Index  " << "|"
+    	<< std::setw(10) << std::right << "First Name" << "|"
+    	<< std::setw(10) << std::right << "Last Name" << "|"
+    	<< std::setw(10) << std::right << "Nickname " << "|"
+    	<< std::endl
+    	<< "|----------|----------|----------|----------|" << std::endl;
 	while (i < 8 && !_contacts[i].getFirstName().empty())
 	{
 		std::cout << "|" << std::setw(10) << std::right << i + 1
@@ -133,5 +136,6 @@ void	PhoneBook::searchContacts(void) const
 			<< "|" << std::endl;
 		i++;
 	}
+	std::cout << std::endl;
 	_promptAndDisplay();
 }
