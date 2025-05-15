@@ -6,6 +6,7 @@
 # include <string>
 # include <cctype>
 # include <cstring>
+# include <iomanip>
 
 class	Contact
 {
@@ -44,11 +45,14 @@ class	PhoneBook
 	private:
 		Contact		_contacts[8];
 		std::string	_fillInfo(std::string const str, int type);
+		std::string	_truncateInfo(std::string str) const;
+		void		_promptAndDisplay(void) const;
 		void		_displace_contacts(void);
 };
 
 std::string	trim(std::string str);
-bool		check_numbers(std::string str);
+bool		check_digits(std::string str);
+bool		check_phone(std::string str);
 bool		check_spaces(std::string str);
 bool		check_alpha(std::string str);
 

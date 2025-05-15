@@ -28,11 +28,25 @@ bool	check_alpha(std::string str)
 	return true;
 }
 
-bool	check_numbers(std::string str)
+bool	check_digits(std::string str)
 {
 	int	i;
 
-	if ((str[0] != '+' || (str[0] == '+' && !str[1]))  && !std::isdigit(str[0]))
+	i = 0;
+	while(str[i])
+	{
+		if (!isdigit(str[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+bool	check_phone(std::string str)
+{
+	int	i;
+
+	if ((str[0] != '+' || (str[0] == '+' && !str[1])) && !std::isdigit(str[0]))
 		return false;
 	i = 1;
 	while (str[i])

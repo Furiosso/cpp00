@@ -5,7 +5,7 @@ CFILES = contact.class.cpp\
          phonebook.class.cpp\
          phonebook.cpp
 
-CFLAGS = -std=c++98 #Wall -Wextra -Werror
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 OFILES = $(CFILES:.cpp=.o)
 
