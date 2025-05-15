@@ -82,18 +82,24 @@ std::string	PhoneBook::_truncateInfo(std::string str) const
 void	PhoneBook::_promptAndDisplay(void) const
 {
 	std::string	input;
-	int			index;
+	long long	index;
 
 	index = 0;
 	while (true)
 	{
-		std::cout << std::endl << G << "Introduce the index of the contact to display information: " << RS;
+		std::cout << std::endl << G
+			<< "Introduce the index of the contact to display information: " << RS;
 		std::getline(std::cin, input);
 		if (!input.empty() && check_spaces(input))
 		{
 			input = trim(input);
-			if (check_digits(input))
-				index = std::stoi(input);
+			if (check_digits(input) && input.length() < 19)
+			{
+				index = std::stoll(input);
+				if (index < std::numeric_limits<int>::min()
+					|| index > std::numeric_limits<int>::max())
+					index = 0;
+			}
 		}
 		if (index > 0 && index < 9 && !_contacts[index - 1].getFirstName().empty())
 			break ;
@@ -108,7 +114,6 @@ void	PhoneBook::_promptAndDisplay(void) const
 		<< Y << "\tPhone number: " << RS << _contacts[index].getPhoneNumber() << std::endl
 		<< Y << "\tDarkest secret: " << RS << _contacts[index].getDarkestSecret() << std::endl;
 }
-
 
 void	PhoneBook::searchContacts(void) const
 {
@@ -136,7 +141,6 @@ void	PhoneBook::searchContacts(void) const
 			<< M << "|" << std::endl;
 		i++;
 	}
-	std::cout << "|__________|__________|__________|__________|" << std::endl
-		<< RS << std::endl;
+	std::cout << "|__________|__________|__________|__________|" << RS << std::endl;
 	_promptAndDisplay();
 }

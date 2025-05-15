@@ -7,6 +7,7 @@
 # include <cctype>
 # include <cstring>
 # include <iomanip>
+# include <limits>
 
 # define RS	"\033[0m"
 # define R	"\033[31m"
