@@ -8,18 +8,23 @@
 # include <cstring>
 # include <iomanip>
 
+# define RS	"\033[0m"
+# define R	"\033[31m"
+# define G	"\033[32m"
+# define Y	"\033[33m"
+# define M	"\033[35m"
+# define C	"\033[36m"
+
 class	Contact
 {
 	public:
 		Contact(void);
 		~Contact(void);
-		void		setIndex(int index);
 		void		setFirstName(std::string firstName);
 		void		setLastName(std::string lastName);
 		void		setNickName(std::string nickName);
 		void		setPhoneNumber(std::string phoneNumber);
 		void		setDarkestSecret(std::string darkestSecret);
-		int			getIndex(void) const;
 		std::string	getFirstName(void) const;
 		std::string	getLastName(void) const;
 		std::string	getNickName(void) const;

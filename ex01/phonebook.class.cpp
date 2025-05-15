@@ -11,7 +11,7 @@ std::string	PhoneBook::_fillInfo(std::string const str, int type)
 
 	while (true)
 	{
-		std::cout << "Introduce the " << str << " of the contact: ";
+		std::cout << G << "Please, introduce the " << str << " of the contact: " << RS;
 		std::getline(std::cin, input);
 		std::cout << std::endl;
 		if (!input.empty()
@@ -21,7 +21,7 @@ std::string	PhoneBook::_fillInfo(std::string const str, int type)
 						|| !type))
 			return trim(input);
 		std::cout << std::endl
-		<< "Invalid input. Please stick to the format." << std::endl 
+		<< R << "Invalid input. Please stick to the format." << RS << std::endl 
 		<< std::endl;
 	}
 }
@@ -87,7 +87,7 @@ void	PhoneBook::_promptAndDisplay(void) const
 	index = 0;
 	while (true)
 	{
-		std::cout << "Introduce index of the contact to display information: ";
+		std::cout << std::endl << G << "Introduce the index of the contact to display information: " << RS;
 		std::getline(std::cin, input);
 		if (!input.empty() && check_spaces(input))
 		{
@@ -97,17 +97,16 @@ void	PhoneBook::_promptAndDisplay(void) const
 		}
 		if (index > 0 && index < 9 && !_contacts[index - 1].getFirstName().empty())
 			break ;
-		std::cout << std::endl << "Invalid index." << std::endl;
+		std::cout << R << std::endl << "Invalid index" << RS << std::endl;
 		index = 0;
 	}
-	std::cout << std::endl << "Contact " << index << ":" << std::endl;
+	std::cout << C << std::endl << "Contact " << index << ":" << std::endl;
 	index--;
-	std::cout << "\tFist name: " << _contacts[index].getFirstName() << std::endl
-		<< "\tLast name: " << _contacts[index].getLastName() << std::endl
-		<< "\tNickame: " << _contacts[index].getNickName() << std::endl
-		<< "\tPhone number: " << _contacts[index].getPhoneNumber() << std::endl
-		<< "\tDarkest secret: " << _contacts[index].getDarkestSecret() << std::endl
-		<< std::endl;
+	std::cout << Y << "\tFirst name: " << RS << _contacts[index].getFirstName() << std::endl
+		<< Y << "\tLast name: " << RS << _contacts[index].getLastName() << std::endl
+		<< Y << "\tNickame: " << RS << _contacts[index].getNickName() << std::endl
+		<< Y << "\tPhone number: " << RS << _contacts[index].getPhoneNumber() << std::endl
+		<< Y << "\tDarkest secret: " << RS << _contacts[index].getDarkestSecret() << std::endl;
 }
 
 
@@ -118,24 +117,26 @@ void	PhoneBook::searchContacts(void) const
 	i = 0;
 	if (_contacts[i].getFirstName().empty())
 	{
-		std::cout << "The PhoneBook is empty" << std::endl;
+		std::cout << R << "The PhoneBook is empty" << RS << std::endl;
 		return ;
 	}
-	std::cout << "|" << std::setw(10) << std::right << "Index  " << "|"
-    	<< std::setw(10) << std::right << "First Name" << "|"
-    	<< std::setw(10) << std::right << "Last Name" << "|"
-    	<< std::setw(10) << std::right << "Nickname " << "|"
+	std::cout << M << " ___________________________________________" << std::endl
+		<< "|" << G << std::setw(10) << std::left << "Index" << M << "|"
+    	<< G << std::setw(10) << std::left << "First Name" << M << "|"
+    	<< G << std::setw(10) << std::left << "Last Name" << M << "|"
+    	<< G << std::setw(10) << std::left << "Nickname" << M << "|"
     	<< std::endl
     	<< "|----------|----------|----------|----------|" << std::endl;
 	while (i < 8 && !_contacts[i].getFirstName().empty())
 	{
-		std::cout << "|" << std::setw(10) << std::right << i + 1
-			<< "|" << std::setw(10) << std::right << _truncateInfo(_contacts[i].getFirstName())
-			<< "|" << std::setw(10) << std::right << _truncateInfo(_contacts[i].getLastName())
-			<< "|" << std::setw(10) << std::right << _truncateInfo(_contacts[i].getNickName())
-			<< "|" << std::endl;
+		std::cout << "|" << Y << std::setw(10) << std::right << i + 1
+			<< M << "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getFirstName())
+			<< M << "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getLastName())
+			<< M "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getNickName())
+			<< M << "|" << std::endl;
 		i++;
 	}
-	std::cout << std::endl;
+	std::cout << "|__________|__________|__________|__________|" << std::endl
+		<< RS << std::endl;
 	_promptAndDisplay();
 }
