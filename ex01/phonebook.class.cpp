@@ -132,7 +132,7 @@ void	PhoneBook::searchContacts(void) const
 		std::cout << "|" << Y << std::setw(10) << std::right << i + 1
 			<< M << "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getFirstName())
 			<< M << "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getLastName())
-			<< M "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getNickName())
+			<< M << "|" << C << std::setw(10) << std::right << _truncateInfo(_contacts[i].getNickName())
 			<< M << "|" << std::endl;
 		i++;
 	}

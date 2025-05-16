@@ -5,9 +5,7 @@
 # include <iostream>
 # include <string>
 # include <cctype>
-# include <cstring>
 # include <iomanip>
-# include <limits>
 # include "contact.class.hpp"
 # include "phonebook.class.hpp"
 
@@ -17,7 +15,6 @@
 # define Y	"\033[33m"
 # define M	"\033[35m"
 # define C	"\033[36m"
-
 
 std::string	trim(std::string str);
 int			get_length(std::string str);
