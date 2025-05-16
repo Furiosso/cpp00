@@ -5,6 +5,89 @@ PhoneBook::PhoneBook(void){}
 
 PhoneBook::~PhoneBook(void){}
 
+bool	PhoneBook::_check_spaces(std::string str) const
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!std::isspace(str[i]))
+			return true;
+		i++;
+	}
+	return false;
+}
+
+bool	PhoneBook::_check_alpha(std::string str) const
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!std::isalpha(str[i]) && !std::isspace(str[i])) 
+			return false;
+		i++;
+	}
+	return true;
+}
+
+bool	PhoneBook::_check_digits(std::string str) const
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (!isdigit(str[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+bool	PhoneBook::_check_phone(std::string str) const
+{
+	int	i;
+
+	i = 0;
+	while (std::isspace(str[i]))
+		i++;
+	if (str[i] == '+')
+	{
+		if (!str[i + 1])
+			return false;
+		i++;
+	}
+	while (str[i])
+	{
+		if (!std::isdigit(str[i]) && !std::isspace(str[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+std::string	PhoneBook::trim(std::string str)
+{
+	int	i;
+
+	while (std::isspace(str[0]))
+		str.erase(0, 1);
+	while (std::isspace(str[str.length() - 1]))
+		str.erase(str.length() - 1, 1);
+	i = 0;
+	while (str[i])
+	{
+		if (std::isspace(str[i]) && std::isspace(str[i + 1]))
+			str.erase(i, 1);
+		else
+			i++;
+	}
+	return str;
+}
+
 std::string	PhoneBook::_fillInfo(std::string const str, int type)
 {
 	std::string	input;
@@ -15,9 +98,9 @@ std::string	PhoneBook::_fillInfo(std::string const str, int type)
 		std::getline(std::cin, input);
 		std::cout << std::endl;
 		if (!input.empty()
-				&& check_spaces(input)
-				&& ((type == 1 && check_alpha(input))
-						|| (type == 2 && check_phone(input))
+				&& _check_spaces(input)
+				&& ((type == 1 && _check_alpha(input))
+						|| (type == 2 && _check_phone(input))
 						|| !type))
 			return trim(input);
 		std::cout << std::endl
@@ -79,7 +162,7 @@ std::string	PhoneBook::_truncateInfo(std::string str) const
 	return copy;
 }
 
-void	PhoneBook::_promptAndDisplay(void) const
+void	PhoneBook::_promptAndDisplay(void)
 {
 	std::string	input;
 	int			index;
@@ -90,10 +173,10 @@ void	PhoneBook::_promptAndDisplay(void) const
 		std::cout << std::endl << G
 			<< "Introduce the index of the contact to display information: " << RS;
 		std::getline(std::cin, input);
-		if (!input.empty() && check_spaces(input))
+		if (!input.empty() && _check_spaces(input))
 		{
 			input = trim(input);
-			if (get_length(input) == 1 && check_digits(input))
+			if (input.length() == 1 && _check_digits(input))
 				index = std::stoi(input);
 		}
 		if (index > 0 && index < 9 && !_contacts[index - 1].getFirstName().empty())
@@ -110,7 +193,7 @@ void	PhoneBook::_promptAndDisplay(void) const
 		<< Y << "\tDarkest secret: " << RS << _contacts[index].getDarkestSecret() << std::endl;
 }
 
-void	PhoneBook::searchContacts(void) const
+void	PhoneBook::searchContacts(void)
 {
 	int	i;
 

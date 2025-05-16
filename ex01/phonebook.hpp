@@ -16,11 +16,4 @@
 # define M	"\033[35m"
 # define C	"\033[36m"
 
-std::string	trim(std::string str);
-int			get_length(std::string str);
-bool		check_digits(std::string str);
-bool		check_phone(std::string str);
-bool		check_spaces(std::string str);
-bool		check_alpha(std::string str);
-
 #endif
