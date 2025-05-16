@@ -82,7 +82,7 @@ std::string	PhoneBook::_truncateInfo(std::string str) const
 void	PhoneBook::_promptAndDisplay(void) const
 {
 	std::string	input;
-	long long	index;
+	int			index;
 
 	index = 0;
 	while (true)
@@ -93,13 +93,8 @@ void	PhoneBook::_promptAndDisplay(void) const
 		if (!input.empty() && check_spaces(input))
 		{
 			input = trim(input);
-			if (check_digits(input) && input.length() < 19)
-			{
-				index = std::stoll(input);
-				if (index < std::numeric_limits<int>::min()
-					|| index > std::numeric_limits<int>::max())
-					index = 0;
-			}
+			if (get_length(input) == 1 && check_digits(input))
+				index = std::stoi(input);
 		}
 		if (index > 0 && index < 9 && !_contacts[index - 1].getFirstName().empty())
 			break ;

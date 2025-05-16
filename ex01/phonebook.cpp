@@ -84,6 +84,16 @@ std::string	trim(std::string str)
 	return str;
 }
 
+int	get_length(std::string str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return i;
+}
+
 int main(void)
 {
 	PhoneBook	phonebook;
