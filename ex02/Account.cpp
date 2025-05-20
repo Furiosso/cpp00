@@ -41,7 +41,7 @@
 		std::cout << "accounts:" << getNbAccounts()
 			<< ";total:" << getTotalAmount()
 			<< ";deposits:" << getNbDeposits()
-			<< ";withdrawals" << getNbWithdrawals()
+			<< ";withdrawals:" << getNbWithdrawals()
 			<< std::endl;
     }
 
@@ -95,8 +95,8 @@
 		_displayTimestamp();
 		std::cout << "index:" << _accountIndex
 			<< ";amount:" << checkAmount()
-			<< ";deposit:" << _nbDeposits
-			<< ";withdrawal:" << _nbWithdrawals
+			<< ";deposits:" << _nbDeposits
+			<< ";withdrawals:" << _nbWithdrawals
 			<< std::endl;
 	}
 
